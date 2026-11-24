@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="慢看筆記如何用 AGENTS.md、範本、產生器與檢查腳本，讓 AI 依同一套規則持續新增練習。">
+  <title>製作方式｜慢看筆記</title>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">跳到主要內容</a>
+  <header class="bar wrap">
+    <a class="brand" href="index.html"><span aria-hidden="true">◈</span> 慢看筆記</a>
+    <nav class="nav-links" aria-label="主要導覽"><a href="index.html#notes">觀察練習</a><a href="about.html" aria-current="page">製作方式</a></nav>
+  </header>
+  <main id="main" class="wrap">
+    <article class="entry prose">
+      <header class="entry-header sound">
+        <p class="label">HOW IT GROWS ／ 製作方式</p>
+        <h1>這個網站怎麼長出來</h1>
+        <p>每一篇練習都由 AI 讀完 AGENTS.md 後，用同一套範本、產生器和檢查腳本完成。</p>
+      </header>
+
+      <section aria-labelledby="parts">
+        <h2 id="parts">四個零件</h2>
+        <ul>
+          <li><strong>規則</strong>：<a href="https://github.com/10969Ethan/slow-look-notes/blob/main/AGENTS.md">AGENTS.md</a> 寫明目的、語氣、頁面結構、命名、分類和完成條件。</li>
+          <li><strong>範本</strong>：<code>templates/note.html</code> 固定每篇的骨架：標頭、時間／準備／地點、四段內容、上下篇導覽。</li>
+          <li><strong>產生器</strong>：<code>python3 tools/new_note.py &lt;slug&gt; &lt;分類&gt;</code> 自動決定編號、底色、上下篇連結，並把卡片插進首頁。</li>
+          <li><strong>檢查器</strong>：<code>python3 tools/check.py</code> 把規則變成 20 多項自動檢查；每次推上 GitHub 也會由 GitHub Actions 再跑一次。</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="flow">
+        <h2 id="flow">新增一篇的流程</h2>
+        <ol class="steps">
+          <li>決定主題與分類。分類不在表上時，先登錄新分類。</li>
+          <li>執行產生器，得到一個填好編號、底色和連結的空白頁。</li>
+          <li>依 AGENTS.md 的寫作規則填完所有欄位與首頁卡片。</li>
+          <li>執行檢查器，修到全部通過，再在下方紀錄表補一列。</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="cats">
+        <h2 id="cats">目前的分類</h2>
+        <table class="log">
+          <thead><tr><th scope="col">分類</th><th scope="col">CSS 類別</th><th scope="col">觀察重點</th></tr></thead>
+          <tbody>
+            <tr><td><span class="swatch light"></span>光線</td><td><code>.light</code></td><td>影子、反光、明暗變化</td></tr>
+            <tr><td><span class="swatch sound"></span>聲音</td><td><code>.sound</code></td><td>遠近、方向、重複的聲音</td></tr>
+            <tr><td><span class="swatch touch"></span>觸感</td><td><code>.touch</code></td><td>溫度、紋理、回彈</td></tr>
+            <tr><td><span class="swatch color"></span>顏色</td><td><code>.color</code></td><td>色調、深淺、被忽略的顏色</td></tr>
+            <tr><td><span class="swatch rhythm"></span>節奏</td><td><code>.rhythm</code></td><td>重複、間隔、時間線</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section aria-labelledby="log">
+        <h2 id="log">新增紀錄</h2>
+        <p>第一版只有 01、02 兩篇。03 到 05 是之後只給 AI 一句指令、照 AGENTS.md 加上的。</p>
+        <table class="log">
+          <thead><tr><th scope="col">練習</th><th scope="col">給 AI 的指令</th><th scope="col">規則幫了什麼</th></tr></thead>
+          <tbody>
+            <tr><td><a href="notes/shadow-map.html">01 追一小段影子</a></td><td>第一版手工完成，作為其他頁的參考範例。</td><td>定下四段結構與語氣。</td></tr>
+            <tr><td><a href="notes/sound-layers.html">02 畫一張聲音地圖</a></td><td>第一版手工完成。</td><td>確認範本能套到不同感官。</td></tr>
+            <tr><td><a href="notes/texture-trail.html">03 摸一張材質地圖</a></td><td>「依照 AGENTS.md 新增一篇觸感練習：比較三種可以安全觸碰的表面。」</td><td>產生器給了編號 03 與 <code>.touch</code>；安全規則讓步驟避開尖銳、高溫和別人的物品。</td></tr>
+            <tr><td><a href="notes/wall-colors.html">04 數一面牆的顏色</a></td><td>「依照 AGENTS.md 新增一篇顏色練習，主題是一面看似單色的牆。」</td><td>「紀錄示例要寫具體細節」讓示例列出五種具體色調。</td></tr>
+            <tr><td><a href="notes/crosswalk-rhythm.html">05 聽一個路口的節奏</a></td><td>「依照 AGENTS.md 新增一個『節奏』分類和一篇路口觀察練習。」</td><td>走過「新增分類」流程；檢查器確認分類表、CSS 和頁面三處一致。</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <nav class="pager" aria-label="返回"><a href="index.html#notes">← 回練習索引</a></nav>
+    </article>
+  </main>
+  <footer class="bar wrap"><span>慢看筆記</span><span>日常觀察練習集</span></footer>
+</body>
+</html>

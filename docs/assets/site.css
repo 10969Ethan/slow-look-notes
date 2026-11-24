@@ -5,8 +5,12 @@
   --forest: #1c3d33;
   --muted: #4a6056;
   --line: #c9cbbd;
+  /* 分類底色：與 tools/categories.json 一一對應 */
   --light: #f5e3bd;
   --sound: #dae8d9;
+  --touch: #efdcd0;
+  --color: #dfe4f0;
+  --rhythm: #ece3f0;
   font-family: system-ui, "Microsoft JhengHei", sans-serif;
 }
 * { box-sizing: border-box; }
@@ -28,22 +32,29 @@ footer.bar { border-top: 1px solid var(--line); color: var(--muted); font-size: 
 h1, h2, h3, p { margin-block: 0; }
 h1, h2 { font-family: "Noto Serif TC", "PMingLiU", serif; line-height: 1.23; }
 h1 { font-size: clamp(2.35rem, 6vw, 4.9rem); margin-block: .65rem 1rem; }
+.hero h1 { font-size: clamp(2.35rem, 5.2vw, 4.2rem); }
 .hero p:not(.label) { max-width: 32ch; }
 .button { display: inline-block; margin-top: 1.5rem; padding: .55rem 1rem; border-radius: 6px; background: #ffda88; color: var(--forest); font-weight: 750; }
 .hero a:focus-visible { outline-color: #fff8e5; }
 .collection { margin-block: clamp(2rem, 6vw, 4.5rem); }
 h2 { font-size: clamp(1.55rem, 3.5vw, 2.4rem); margin-block: .3rem .85rem; }
-.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; list-style: none; margin: 1.5rem 0 0; padding: 0; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 1rem; list-style: none; margin: 1.5rem 0 0; padding: 0; }
 .light { background: var(--light); }
 .sound { background: var(--sound); }
+.touch { background: var(--touch); }
+.color { background: var(--color); }
+.rhythm { background: var(--rhythm); }
 .card { border: 1px solid var(--line); border-radius: 10px; }
-.card a { display: block; height: 100%; border-radius: inherit; text-decoration: none; }
+.card a { display: flex; flex-direction: column; height: 100%; border-radius: inherit; text-decoration: none; }
 .card a:hover h3, .card a:focus-visible h3 { text-decoration: underline; }
 .card svg { display: block; width: 100%; height: clamp(125px, 19vw, 205px); }
-.card-body { border-top: 1px solid var(--line); border-radius: 0 0 9px 9px; background: #fffcf4; padding: 1rem 1.2rem; }
+.card-body { flex: 1; border-top: 1px solid var(--line); border-radius: 0 0 9px 9px; background: #fffcf4; padding: 1rem 1.2rem; }
 .card h3 { font-size: 1.35rem; }
 .card h3 span { margin-left: .4em; }
 .card p { color: var(--muted); }
+.card .time { display: inline-block; margin-top: .5rem; font-size: .85rem; font-weight: 700; color: var(--forest); }
+.intro-line { color: var(--muted); max-width: 60ch; }
+.nav-links { display: flex; gap: 1.25rem; }
 .entry { max-width: 740px; margin: 1rem auto 4rem; }
 .back { display: inline-block; margin-bottom: 1rem; font-weight: 700; }
 .entry-header, .example { padding: clamp(1.1rem, 5vw, 2rem); border-radius: 10px; }
@@ -54,8 +65,31 @@ h2 { font-size: clamp(1.55rem, 3.5vw, 2.4rem); margin-block: .3rem .85rem; }
 .steps li { padding-inline-start: .35rem; margin-block: .65rem; }
 .steps li::marker { font-weight: 750; }
 .example { background: #eee9da; }
+.meta { display: grid; grid-template-columns: max-content 1fr; gap: .35rem 1rem; margin: 1.25rem 0 0; padding: 1rem 1.2rem; border: 1px solid var(--line); border-radius: 10px; background: #fffcf4; }
+.meta dt { font-weight: 750; }
+.meta dd { margin: 0; }
+.pager { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid var(--line); font-weight: 700; }
+.pager .next { margin-left: auto; text-align: right; }
+.prose section { margin-top: 2rem; }
+.prose h2 { font-size: 1.5rem; }
+.prose ol, .prose ul { padding-inline-start: 1.4rem; }
+.prose li { margin-block: .4rem; }
+.prose code { font-size: .92em; background: #eee9da; padding: .05em .35em; border-radius: 4px; }
+.log { width: 100%; border-collapse: collapse; margin-top: .75rem; }
+.log th, .log td { text-align: left; padding: .55rem .6rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+.swatch { display: inline-block; width: .9em; height: .9em; border: 1px solid var(--line); border-radius: 3px; vertical-align: -.1em; margin-right: .35em; }
 @media (max-width: 640px) {
   .hero, .cards { grid-template-columns: 1fr; }
   .hero { gap: 1rem; }
   .hero-art { max-width: 280px; }
+  .meta { grid-template-columns: 1fr; }
+  .meta dd { margin-bottom: .4rem; }
+}
+/* 列印：內頁可直接當紙本紀錄單 */
+@media print {
+  .skip, header.bar, footer.bar, .back, .pager { display: none; }
+  body { background: white; }
+  .entry { margin: 0; max-width: none; }
+  .entry-header, .example, .meta { background: none; border: 1px solid #999; }
+  .entry::after { content: "我的紀錄：____________________________________________"; display: block; margin-top: 2rem; line-height: 3; }
 }

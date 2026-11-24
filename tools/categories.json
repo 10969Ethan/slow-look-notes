@@ -1,0 +1,7 @@
+{
+  "光線": { "class": "light",  "color": "#f5e3bd", "hint": "影子、反光、明暗變化" },
+  "聲音": { "class": "sound",  "color": "#dae8d9", "hint": "遠近、方向、重複的聲音" },
+  "觸感": { "class": "touch",  "color": "#efdcd0", "hint": "溫度、紋理、回彈" },
+  "顏色": { "class": "color",  "color": "#dfe4f0", "hint": "色調、深淺、被忽略的顏色" },
+  "節奏": { "class": "rhythm", "color": "#ece3f0", "hint": "重複、間隔、時間線" }
+}
