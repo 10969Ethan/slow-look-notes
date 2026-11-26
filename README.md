@@ -4,6 +4,7 @@
 
 - 🌐 網站：<https://10969ethan.github.io/slow-look-notes/>
 - 🤖 AI 開發規則：[AGENTS.md](AGENTS.md)（Claude Code 透過 [CLAUDE.md](CLAUDE.md) 讀取同一份）
+- 🎨 統一風格圖像生成 Agent（另一份作業）：[style-agent/](style-agent/)
 - 🛠 製作方式與新增紀錄：[docs/about.html](https://10969ethan.github.io/slow-look-notes/about.html)
 
 ## 這個專案的重點
